@@ -1,14 +1,21 @@
-# Provides Standalone RHEL instance, which is managed via SSH
+# Provides Standalone Amazon Linux instance, which is managed via SSH
 resource "aws_instance" "amazon_linux" {
   ami                         = var.ami
   subnet_id                   = var.sub2_id
   instance_type               = var.instance_type
   vpc_security_group_ids      = [var.pub_ssh_sg]
   associate_public_ip_address = true
-  key_name                    = var.key_name
+  key_name                    = var.key_name_ec2
+  user_data = <<-EOF
+    #!/bin/bash
+    yum update -y &&
+    yum install git -y
+    EOF
+
   root_block_device {
     volume_size = 20
   }
+
   tags = {
     Name = "${var.base_name}_amazon_linux_ec2"
   }

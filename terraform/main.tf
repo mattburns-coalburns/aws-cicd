@@ -3,10 +3,20 @@ module "vpc" {
   base_name = var.base_name
 }
 
-# Invokes Secret Manager module
 module "sm" {
   source    = "./modules/sm"
   base_name = var.base_name
+}
+
+module "codecommit" {
+  source    = "./modules/codecommit"
+  base_name = var.base_name
+}
+
+module "iam" {
+  source    = "./modules/iam"
+  base_name = var.base_name
+pub_key_codecommit = module.sm.pub_key_codecommit
 }
 
 # Invokes EC2 instance that serves as an administrative server
@@ -20,7 +30,7 @@ module "ec2" {
   # pub_http_sg          = module.vpc.pub_http_sg
   # pri_http_sg          = module.vpc.pri_http_sg
   # alb_target_group_arn = module.vpc.alb_target_group_arn
-  key_name             = module.sm.key_name
+  key_name_ec2             = module.sm.key_name_ec2
 }
 
 # # Invokes KMS module (Used to encrypt S3 bucket)
@@ -33,12 +43,4 @@ module "ec2" {
 #   source      = "./modules/s3"
 #   base_name   = var.base_name
 #   kms_key_arn = module.kms.kms_key_arn
-# }
-
-output "ec2_ssh_pub_ip" {
-  value = join(": ", ["Try to SSH to this IP. You'll have to get the key from Secrets Manager", module.ec2.ec2_ssh_pub_ip])
-}
-
-# output "alb_dns_name" {
-#   value = join(": ", ["Try navigating to this in a web browser", module.vpc.alb_dns_name])
 # }

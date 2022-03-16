@@ -52,6 +52,6 @@ variable "pub_ssh_sg" {
 #   description = "Imports the ARN of the ALB Target Group from VPC"
 # }
 
-variable "key_name" {
+variable "key_name_ec2" {
   description = "Imports name of SecretsManager managed Key"
 }
