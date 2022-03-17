@@ -6,7 +6,7 @@ resource "aws_instance" "amazon_linux" {
   vpc_security_group_ids      = [var.pub_ssh_sg]
   associate_public_ip_address = true
   key_name                    = var.key_name_ec2
-  user_data = <<-EOF
+  user_data                   = <<-EOF
     #!/bin/bash
     yum update -y &&
     yum install git -y

@@ -3,7 +3,7 @@ output "codecommit_url" {
 }
 
 output "codecommit_iam_user" {
-    value = module.iam.aws_iam_username
+  value = module.iam.aws_iam_username
 }
 
 output "ec2_login" {

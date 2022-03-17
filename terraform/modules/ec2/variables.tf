@@ -1,6 +1,6 @@
 variable "base_name" {
   type        = string
-  description = "The base name for the EC2 instance"
+  description = "The base name for all resources"
 }
 
 variable "ami" {

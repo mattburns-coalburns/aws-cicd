@@ -3,8 +3,8 @@ data "aws_iam_policy" "codecommit" {
 }
 
 resource "aws_iam_user" "codecommit" {
-  name = "cc-user"
-  path = "/system/"
+  name          = "cc-user"
+  path          = "/system/"
   force_destroy = true
 }
 

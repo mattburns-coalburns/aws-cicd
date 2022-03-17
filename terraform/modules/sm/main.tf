@@ -14,13 +14,13 @@ resource "tls_private_key" "ec2" {
 
 # Provides an EC2 key pair resource
 resource "aws_key_pair" "ec2" {
-  key_name = join("-", ["${var.base_name}-ec2", random_string.random.result])
-  public_key      = tls_private_key.ec2.public_key_openssh
+  key_name   = join("-", ["${var.base_name}-ec2", random_string.random.result])
+  public_key = tls_private_key.ec2.public_key_openssh
 }
 
 # Provides a resource to manage AWS Secrets Manager secret metadata
 resource "aws_secretsmanager_secret" "ec2" {
-  name = join("-", ["${var.base_name}-ec2", random_string.random.result])
+  name        = join("-", ["${var.base_name}-ec2", random_string.random.result])
   description = var.description
 }
 
@@ -40,13 +40,13 @@ resource "tls_private_key" "cc-user" {
 
 # Provides an cc-user key pair resource
 resource "aws_key_pair" "cc-user" {
-  key_name = join("-", ["${var.base_name}-codecommit", random_string.random.result])
-  public_key      = tls_private_key.cc-user.public_key_openssh
+  key_name   = join("-", ["${var.base_name}-codecommit", random_string.random.result])
+  public_key = tls_private_key.cc-user.public_key_openssh
 }
 
 # Provides a resource to manage AWS Secrets Manager secret metadata
 resource "aws_secretsmanager_secret" "cc-user" {
-  name = join("-", ["${var.base_name}-codecommit", random_string.random.result])
+  name        = join("-", ["${var.base_name}-codecommit", random_string.random.result])
   description = var.description
 }
 
