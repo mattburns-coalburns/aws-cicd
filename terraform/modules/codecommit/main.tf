@@ -4,12 +4,12 @@ resource "aws_codecommit_repository" "main" {
   default_branch  = "master"
 }
 
-resource "aws_codecommit_trigger" "main" {
-  repository_name = aws_codecommit_repository.main.repository_name
+# resource "aws_codecommit_trigger" "main" {
+#   repository_name = aws_codecommit_repository.main.repository_name
 
-  trigger {
-    name            = "all"
-    events          = ["all"]
-    destination_arn = var.cc_push_sns_arn
-  }
-}
+#   trigger {
+#     name            = "all"
+#     events          = ["all"]
+#     destination_arn = var.cc_push_sns_arn
+#   }
+# }

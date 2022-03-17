@@ -11,7 +11,7 @@ module "sm" {
 module "codecommit" {
   source    = "./modules/codecommit"
   base_name = var.base_name
-  cc_push_sns_arn = module.sns.cc_push_sns_arn
+  # cc_push_sns_arn = module.sns.cc_push_sns_arn
 }
 
 module "iam" {
@@ -20,16 +20,22 @@ module "iam" {
   pub_key_codecommit = module.sm.pub_key_codecommit
 }
 
-module "sns" {
-  source    = "./modules/sns"
-  base_name = var.base_name
-  cc_push_endpoint = module.sqs.cc_push_sqs_arn
-}
+# module "lambda" {
+#   source             = "./modules/lambda"
+#   base_name          = var.base_name
+#   iam_for_lambda = module.iam.iam_for_lambda
+# }
 
-module "sqs" {
-  source    = "./modules/sqs"
-  base_name = var.base_name
-}
+# module "sns" {
+#   source    = "./modules/sns"
+#   base_name = var.base_name
+#   cc_push_endpoint = module.sqs.cc_push_sqs_arn
+# }
+
+# module "sqs" {
+#   source    = "./modules/sqs"
+#   base_name = var.base_name
+# }
 
 # Invokes EC2 instance that serves as an administrative server
 module "ec2" {

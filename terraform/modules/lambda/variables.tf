@@ -3,6 +3,6 @@ variable "base_name" {
   description = "The base name for all resources"
 }
 
-# variable "cc_push_sns_arn" {
-#   description = "The ARN of the CodeCommit SNS Topic"
-# }
+variable "iam_for_lambda" {
+  description = "IAM Role for Lambda"
+}
