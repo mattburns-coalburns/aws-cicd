@@ -12,4 +12,4 @@ resource "aws_codecommit_repository" "main" {
 #     events          = ["all"]
 #     destination_arn = var.cc_push_sns_arn
 #   }
-# }
+# }032524
